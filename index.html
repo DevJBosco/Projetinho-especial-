@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mil Elogios</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00f;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            transition: all 1s ease;
+        }
+        h1 {
+            color: #00f;
+            text-align: center;
+        }
+        #elogio {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #00f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005;
+        }
+        #feedback {
+            margin-top: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        #feedback button {
+            margin: 10px;
+        }
+        #gif {
+            margin-top: 20px;
+            display: none;
+        }
+        #chance {
+            margin-top: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        #chance button {
+            margin: 10px;
+        }
+        #linkSection {
+            margin-top: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .happy-theme {
+            background-color: #fffbcc;
+            color: #ff5722;
+            font-family: 'Comic Sans MS', cursive;
+            animation: colorPulse 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .happy-theme #elogio, .happy-theme h1, .happy-theme button {
+            display: none;
+        }
+
+        .happy-theme p {
+            font-size: 2rem;
+            color: #ff5722;
+        }
+
+        .happy-theme img {
+            margin-top: 20px;
+            width: 300px;
+            height: auto;
+        }
+
+        .happy-theme .retry-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes colorPulse {
+            0%, 100% {
+                background-color: #fffbcc;
+            }
+            50% {
+                background-color: #ffe0b2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Mil Elogios para Você!</h1>
+    <div id="elogio">Você é incrível!</div>
+    <button id="toggleButton">Parar</button>
+
+    <div id="feedback">
+        <p>Você gostou?</p>
+        <button id="sim">Sim</button>
+        <button id="nao">Não</button>
+    </div>
+
+    <img id="gif" src="https://media0.giphy.com/media/L95W4wv8nnb9K/200.gif?cid=6c09b952kg7qovwx4im10f7olwmovkstyc3u4rehjoqia1p3&ep=v1_gifs_search&rid=200.gif&ct=g" alt="Não gostou" />
+
+    <div id="chance">
+        <p>Me dá mais uma chance?</p>
+        <button id="chanceSim">Sim</button>
+        <button id="chanceNao">Não</button>
+    </div>
+
+    <div id="linkSection">
+        <p>Sou teimoso, tome esse link, acho que você vai gostar:</p>
+        <a href="https://www.exemplo.com" target="_blank">Clique aqui</a>
+        <p>Gostou?</p>
+        <button id="linkSim">Sim</button>
+        <button id="linkNao">Não</button>
+    </div>
+
+    <script>
+        const elogios = [
+            "Você é incrível!",
+            "Seu sorriso ilumina o dia de qualquer pessoa.",
+            "Você tem um coração enorme.",
+            "A sua bondade é inspiradora.",
+            "Você é uma pessoa muito especial.",
+            "Seu senso de humor é contagiante.",
+            "Você tem uma energia positiva única.",
+            // Adicione mais elogios até alcançar 1000...
+        ];
+
+        let currentElogioIndex = 0;
+        let intervalId = null;
+        const elogioElement = document.getElementById('elogio');
+        const button = document.getElementById('toggleButton');
+        const feedback = document.getElementById('feedback');
+        const gif = document.getElementById('gif');
+        const chance = document.getElementById('chance');
+        const linkSection = document.getElementById('linkSection');
+
+        function alternarElogios() {
+            currentElogioIndex = (currentElogioIndex + 1) % elogios.length;
+            elogioElement.textContent = elogios[currentElogioIndex];
+        }
+
+        function iniciarAlternancia() {
+            intervalId = setInterval(alternarElogios, 100);
+        }
+
+        function pararAlternancia() {
+            clearInterval(intervalId);
+            intervalId = null;
+            button.style.display = 'none';
+            feedback.style.display = 'flex';
+        }
+
+        button.addEventListener('click', () => {
+            if (intervalId) {
+                pararAlternancia();
+            } else {
+                button.textContent = "Parar";
+                iniciarAlternancia();
+            }
+        });
+
+        document.getElementById('sim').addEventListener('click', () => {
+            document.body.classList.add('happy-theme');
+            document.body.innerHTML = '<p>Que bom que gostou!</p><img src="https://media.tenor.com/F6T6brWM1gwAAAAM/dog-teeth.gif" alt="Feliz"><p>Tem mais coisa, vamos tente responder diferente</p><button class="retry-button" onclick="location.reload()">Tentar novamente</button>';
+        });
+
+        document.getElementById('nao').addEventListener('click', () => {
+            gif.style.display = 'block';
+            feedback.style.display = 'none';
+            setTimeout(() => {
+                chance.style.display = 'flex';
+            }, 2000);
+        });
+
+        // Função para mover o botão "Não" aleatoriamente
+        function moverBotaoNao() {
+            const buttonNao = document.getElementById('chanceNao');
+            const maxX = window.innerWidth - buttonNao.offsetWidth;
+            const maxY = window.innerHeight - buttonNao.offsetHeight;
+
+            // Calcula uma nova posição aleatória
+            const posX = Math.random() * maxX;
+            const posY = Math.random() * maxY;
+
+            // Muda a posição do botão
+            buttonNao.style.position = 'absolute';
+            buttonNao.style.left = `${posX}px`;
+            buttonNao.style.top = `${posY}px`;
+        }
+
+        document.getElementById('chanceSim').addEventListener('click', () => {
+            chance.style.display = 'none';
+            linkSection.style.display = 'flex';
+        });
+
+        document.getElementById('chanceNao').addEventListener('click', () => {
+            moverBotaoNao(); // Move o botão "Não" para uma posição aleatória
+        });
+
+        document.getElementById('linkSim').addEventListener('click', () => {
+            document.body.classList.add('happy-theme');
+            document.body.innerHTML = '<p>Que bom que gostou!</p><img src="https://static.wikia.nocookie.net/meme/images/0/00/Cachorro_Dan%C3%A7ante.gif/revision/latest?cb=20170223030701&path-prefix=pt-br" alt="Feliz"><p>Tem mais coisa, vamos tente responder diferente</p><button class="retry-button" onclick="location.reload()">Tentar novamente</button>';
+        });
+
+        document.getElementById('linkNao').addEventListener('click', () => {
+            alert("Repita esse processo mil vezes e se não for suficiente farei um milhão de elogios");
+            location.reload();
+        });
+
+        // Inicia a alternância ao carregar a página
+        iniciarAlternancia();
+    </script>
+</body>
+</html>
