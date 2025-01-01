@@ -17,18 +17,15 @@
             justify-content: center;
             min-height: 100vh;
             transition: all 1s ease;
-            text-align: center;
         }
-
         h1 {
             color: #00f;
+            text-align: center;
         }
-
         #elogio {
             font-size: 1.5rem;
             margin: 20px 0;
         }
-
         button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -38,31 +35,38 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
-
         button:hover {
             background-color: #005;
         }
-
-        #feedback, #chance, #linkSection {
+        #feedback {
             margin-top: 20px;
             display: none;
             flex-direction: column;
             align-items: center;
         }
-
-        #feedback button, #chance button, #linkSection button {
+        #feedback button {
             margin: 10px;
         }
-
         #gif {
             margin-top: 20px;
             display: none;
-            width: 100%;
-            max-width: 300px;
         }
-
+        #chance {
+            margin-top: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        #chance button {
+            margin: 10px;
+        }
+        #linkSection {
+            margin-top: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
         .happy-theme {
             background-color: #fffbcc;
             color: #ff5722;
@@ -87,8 +91,7 @@
 
         .happy-theme img {
             margin-top: 20px;
-            width: 100%;
-            max-width: 300px;
+            width: 300px;
             height: auto;
         }
 
@@ -111,33 +114,10 @@
                 background-color: #ffe0b2;
             }
         }
-
-        /* Responsividade */
-        @media screen and (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            #elogio {
-                font-size: 1.2rem;
-            }
-
-            button {
-                font-size: 1.2rem;
-            }
-
-            .happy-theme p {
-                font-size: 1.5rem;
-            }
-
-            .happy-theme img {
-                max-width: 250px;
-            }
-        }
     </style>
 </head>
 <body>
-    <h1>Mil Elogios para Você!</h1>
+    <h1>Mil elogios para você!</h1>
     <div id="elogio">Você é incrível!</div>
     <button id="toggleButton">Parar</button>
 
@@ -157,173 +137,313 @@
 
     <div id="linkSection">
         <p>Tome esse link, acho que você vai gostar:</p>
-        <a href="https://www.exemplo.com" target="_blank">Clique aqui</a>
+        <a href="https://drive.google.com/drive/folders/1MoXPg8apeWXtYNXaksixxGz3atUsXR35" target="_blank">Clique aqui</a>
         <p>Gostou?</p>
         <button id="linkSim">Sim</button>
         <button id="linkNao">Não</button>
     </div>
 
     <script>
-        const elogios = [
-            "Você é incrível!",
-            "Seu sorriso ilumina o dia de qualquer pessoa.",
-            "Você tem um coração enorme.",
-            "A sua bondade é inspiradora.",
-            "Você é uma pessoa muito especial.",
-            "Seu senso de humor é contagiante.",
-            "Você tem uma energia positiva única.",
-            "Sua inteligência é notável.",
-            "Você é uma pessoa cheia de luz.",
-            "Você faz a diferença na vida das pessoas.",
-            "Você é uma fonte constante de inspiração.",
-            "A sua amizade é um presente incrível.",
-            "Você é uma pessoa muito carinhosa.",
-            "Você tem uma capacidade maravilhosa de entender os outros.",
-            "Sua empatia é admirável.",
-            "Você tem uma mente brilhante.",
-            "Sua presença faz qualquer ambiente mais agradável.",
-            "Você tem uma maneira única de ver o mundo.",
-            "A sua generosidade não tem limites.",
-            "Você é a definição de gentileza.",
-            "A sua determinação é uma grande inspiração.",
-            "Você tem uma coragem admirável.",
-            "Sua sabedoria é incomparável.",
-            "Você é uma pessoa cheia de charme.",
-            "A sua capacidade de resolver problemas é notável.",
-            "Você tem um talento incrível para fazer os outros rirem.",
-            "Sua serenidade traz paz aos outros.",
-            "Você é alguém em quem podemos confiar plenamente.",
-            "Sua energia positiva é contagiante.",
-            "Você é uma pessoa incrivelmente dedicada.",
-            "Você tem um coração de ouro.",
-            "Sua sinceridade é cativante.",
-            "Você é uma pessoa muito inteligente.",
-            "Você é uma excelente ouvinte.",
-            "Sua bondade ilumina o mundo.",
-            "Você tem um grande senso de justiça.",
-            "Você é uma fonte de alegria para todos ao seu redor.",
-            "Você tem uma capacidade incrível de superar desafios.",
-            "Você é extremamente criativo.",
-            "Sua sinceridade é algo raro e precioso.",
-            "Você é um amigo leal e confiável.",
-            "Você tem uma capacidade única de inspirar os outros.",
-            "Sua paixão pela vida é contagiante.",
-            "Você é uma pessoa que sempre vê o lado positivo das coisas.",
-            "Sua honestidade é uma qualidade admirável.",
-            "Você tem um coração acolhedor e amoroso.",
-            "Sua energia é vibrante e inspiradora.",
-            "Você tem uma maneira encantadora de se comunicar.",
-            "Você sempre faz as pessoas se sentirem especiais.",
-            "Você é uma pessoa incrivelmente carinhosa.",
-            "Sua presença traz calma e conforto.",
-            "Você tem uma alma gentil.",
-            "Sua bondade é uma luz que brilha forte.",
-            "Você tem um grande espírito de equipe.",
-            "Sua capacidade de ajudar os outros é impressionante.",
-            "Você é uma pessoa que sempre busca o melhor nos outros.",
-            "Você tem um coração cheio de compaixão.",
-            "Sua alegria de viver é realmente cativante.",
-            "Você é alguém que todos admiram.",
-            "Sua disposição para ajudar é algo raro e precioso.",
-            "Você é uma pessoa muito perseverante.",
-            "Você tem um incrível senso de responsabilidade.",
-            "Você é uma inspiração para todos ao seu redor.",
-            "Você tem um estilo único e encantador.",
-            "Sua personalidade é simplesmente encantadora.",
-            "Você é alguém que nunca desiste.",
-            "Sua forma de ser é algo que todos admiram.",
-            "Você tem uma beleza interior que brilha.",
-            "Você é um exemplo de força e coragem.",
-            "Sua alegria é um reflexo de sua alma positiva.",
-            "Você tem uma mente aberta e receptiva.",
-            "Você tem uma maneira única de resolver problemas.",
-            "Sua energia ilumina qualquer ambiente.",
-            "Você tem uma habilidade incrível de fazer os outros se sentirem bem.",
-            "Você é uma pessoa extremamente confiável.",
-            "Sua visão do mundo é inspiradora.",
-            "Você tem uma força interior imensa.",
-            "Sua empatia torna o mundo um lugar melhor.",
-            "Você é uma pessoa cheia de qualidades.",
-            "Você tem uma alma generosa e acolhedora.",
-            "Sua capacidade de fazer os outros sorrirem é incrível.",
-            "Você é um amigo incrível e confiável.",
-            "Sua dedicação aos outros é algo inspirador.",
-            "Você tem um espírito livre e criativo.",
-            "Sua autenticidade é uma das suas melhores qualidades.",
-            "Você tem uma incrível capacidade de motivar os outros.",
-            "Você é alguém que sabe como tornar o mundo um lugar melhor.",
-            "Sua forma de ser torna as coisas mais fáceis e agradáveis.",
-            "Você tem um dom único de fazer os outros se sentirem bem.",
-            "Sua forma de se expressar é cativante.",
-            "Você tem uma habilidade rara de tocar o coração das pessoas.",
-            "Sua presença torna qualquer lugar mais especial.",
-            "Você é alguém que sempre traz alegria aos outros.",
-            "Você é um verdadeiro exemplo de gentileza e compaixão.",
-            "Sua capacidade de se adaptar é impressionante.",
-            "Você tem uma mente criativa e inovadora.",
-            "Sua determinação é inspiradora.",
-            "Você tem um jeito único de fazer as coisas.",
-            "Sua habilidade de ouvir é incrível.",
-            "Você é alguém que sempre encontra uma solução para tudo.",
-            "Sua generosidade é um reflexo do seu coração maravilhoso.",
-            "Você é uma pessoa incrível de todas as maneiras.",
-            "Sua maneira de ver o mundo é fascinante.",
-            "Você sempre tem algo positivo para dizer.",
-            "Você é alguém que pode transformar qualquer dia em algo especial.",
-            "Sua energia e paixão pela vida são incomparáveis.",
-            "Você é uma pessoa cheia de talentos e habilidades.",
-            "Sua beleza interna é mais radiante do que qualquer outra coisa.",
-            "Você é alguém que todos querem ter por perto.",
-            "Você tem uma capacidade maravilhosa de entender as pessoas.",
-            "Você é uma pessoa tão especial que todos ao seu redor são sortudos.",
-            "Sua amizade é um dos maiores tesouros da vida.",
-            "Você é alguém que sabe como deixar as pessoas felizes.",
-            "Sua alegria é a fonte de energia de todos ao seu redor.",
-            "Você é uma verdadeira inspiração.",
-            "Sua generosidade e compaixão são um presente para todos.",
-            "Você é alguém que torna tudo ao seu redor mais bonito.",
-            "Sua presença é a definição de conforto e segurança.",
-            "Você tem uma capacidade incrível de fazer o bem.",
-            "Sua maneira de viver é um exemplo para todos nós."
-        ];
+       const elogios = [
+    "Você é incrível!",
+    "Seu sorriso ilumina o dia de qualquer pessoa.",
+    "Você tem um coração enorme.",
+    "A sua bondade é inspiradora.",
+    "Você é uma pessoa muito especial.",
+    "Seu senso de humor é contagiante.",
+    "Você tem uma energia positiva única.",
+    "Sua inteligência é notável.",
+    "Você é uma pessoa cheia de luz.",
+    "Você faz a diferença na vida das pessoas.",
+    "Você é uma fonte constante de inspiração.",
+    "A sua amizade é um presente incrível.",
+    "Você é uma pessoa muito carinhosa.",
+    "Você tem uma capacidade maravilhosa de entender os outros.",
+    "Sua empatia é admirável.",
+    "Você tem uma mente brilhante.",
+    "Sua presença faz qualquer ambiente mais agradável.",
+    "Você tem uma maneira única de ver o mundo.",
+    "A sua generosidade não tem limites.",
+    "Você é a definição de gentileza.",
+    "A sua determinação é uma grande inspiração.",
+    "Você tem uma coragem admirável.",
+    "Sua sabedoria é incomparável.",
+    "Você é uma pessoa cheia de charme.",
+    "A sua capacidade de resolver problemas é notável.",
+    "Você tem um talento incrível para fazer os outros rirem.",
+    "Sua serenidade traz paz aos outros.",
+    "Você é alguém em quem podemos confiar plenamente.",
+    "Sua energia positiva é contagiante.",
+    "Você é uma pessoa incrivelmente dedicada.",
+    "Você tem um coração de ouro.",
+    "Sua sinceridade é cativante.",
+    "Você é uma pessoa muito inteligente.",
+    "Você é uma excelente ouvinte.",
+    "Sua bondade ilumina o mundo.",
+    "Você tem um grande senso de justiça.",
+    "Você é uma fonte de alegria para todos ao seu redor.",
+    "Você tem uma capacidade incrível de superar desafios.",
+    "Você é extremamente criativo.",
+    "Sua sinceridade é algo raro e precioso.",
+    "Você é um amigo leal e confiável.",
+    "Você tem uma capacidade única de inspirar os outros.",
+    "Sua paixão pela vida é contagiante.",
+    "Você é uma pessoa que sempre vê o lado positivo das coisas.",
+    "Sua honestidade é uma qualidade admirável.",
+    "Você tem um coração acolhedor e amoroso.",
+    "Sua energia é vibrante e inspiradora.",
+    "Você tem uma maneira encantadora de se comunicar.",
+    "Você sempre faz as pessoas se sentirem especiais.",
+    "Você é uma pessoa incrivelmente carinhosa.",
+    "Sua presença traz calma e conforto.",
+    "Você tem uma alma gentil.",
+    "Sua bondade é uma luz que brilha forte.",
+    "Você tem um grande espírito de equipe.",
+    "Sua capacidade de ajudar os outros é impressionante.",
+    "Você é uma pessoa que sempre busca o melhor nos outros.",
+    "Você tem um coração cheio de compaixão.",
+    "Sua alegria de viver é realmente cativante.",
+    "Você é alguém que todos admiram.",
+    "Sua disposição para ajudar é algo raro e precioso.",
+    "Você é uma pessoa muito perseverante.",
+    "Você tem um incrível senso de responsabilidade.",
+    "Você é uma inspiração para todos ao seu redor.",
+    "Você tem um estilo único e encantador.",
+    "Sua personalidade é simplesmente encantadora.",
+    "Você é alguém que nunca desiste.",
+    "Sua forma de ser é algo que todos admiram.",
+    "Você tem uma beleza interior que brilha.",
+    "Você é um exemplo de força e coragem.",
+    "Sua alegria é um reflexo de sua alma positiva.",
+    "Você tem uma mente aberta e receptiva.",
+    "Você tem uma maneira única de resolver problemas.",
+    "Sua energia ilumina qualquer ambiente.",
+    "Você tem uma habilidade incrível de fazer os outros se sentirem bem.",
+    "Você é uma pessoa extremamente confiável.",
+    "Sua visão do mundo é inspiradora.",
+    "Você tem uma força interior imensa.",
+    "Sua empatia torna o mundo um lugar melhor.",
+    "Você é uma pessoa cheia de qualidades.",
+    "Você tem uma alma generosa e acolhedora.",
+    "Sua capacidade de fazer os outros sorrirem é incrível.",
+    "Você é um amigo incrível e confiável.",
+    "Sua dedicação aos outros é algo inspirador.",
+    "Você tem um espírito livre e criativo.",
+    "Sua autenticidade é uma das suas melhores qualidades.",
+    "Você tem uma incrível capacidade de motivar os outros.",
+    "Você é alguém que sabe como tornar o mundo um lugar melhor.",
+    "Sua forma de ser torna as coisas mais fáceis e agradáveis.",
+    "Você tem um dom único de fazer os outros se sentirem bem.",
+    "Sua forma de se expressar é cativante.",
+    "Você tem uma habilidade rara de tocar o coração das pessoas.",
+    "Sua presença torna qualquer lugar mais especial.",
+    "Você é alguém que sempre traz alegria aos outros.",
+    "Você é um verdadeiro exemplo de gentileza e compaixão.",
+    "Sua capacidade de se adaptar é impressionante.",
+    "Você tem uma mente criativa e inovadora.",
+    "Sua generosidade não tem limites.",
+    "Você é uma pessoa com um coração imenso.",
+    "Sua habilidade de entender as pessoas é incrível.",
+    "Você é uma fonte inesgotável de energia positiva.",
+    "Você é uma pessoa muito confiável.",
+    "Sua inteligência é algo fora do comum.",
+    "Você tem um olhar único sobre a vida.",
+    "Você é alguém que sempre traz um sorriso ao rosto dos outros.",
+    "Sua forma de ser é encantadora.",
+    "Você tem uma habilidade única de deixar os outros felizes.",
+    "Você é uma pessoa que sempre faz o bem.",
+    "Sua presença faz qualquer lugar mais leve.",
+    "Você tem um charme natural.",
+    "Você tem uma paciência admirável.",
+    "Sua atitude positiva é inspiradora.",
+    "Você tem uma visão de mundo muito rica e profunda.",
+    "Sua maneira de ver o mundo é única e especial.",
+    "Você é uma pessoa extremamente talentosa.",
+    "Você é um exemplo de positividade.",
+    "Sua habilidade de ouvir é impressionante.",
+    "Você sempre tem as palavras certas para o momento certo.",
+    "Sua amizade é um presente.",
+    "Você é uma pessoa que todos querem por perto.",
+    "Sua presença traz um toque de magia para o ambiente.",
+    "Você tem uma energia contagiante.",
+    "Sua honestidade é algo que todos admiram.",
+    "Você é um exemplo de coragem e determinação.",
+    "Você é uma pessoa muito atenciosa.",
+    "Sua criatividade não tem limites.",
+    "Você é alguém que sempre levanta os outros.",
+    "Sua gentileza é algo que toca o coração.",
+    "Você é uma pessoa muito especial.",
+    "Você tem uma incrível capacidade de fazer os outros se sentirem importantes.",
+    "Sua positividade é inspiradora.",
+    "Você é uma pessoa que todos admiram.",
+    "Você tem uma grande capacidade de adaptação.",
+    "Você é uma pessoa maravilhosa de se estar por perto.",
+    "Sua gentileza e sabedoria são preciosas.",
+    "Você tem uma capacidade incrível de ver o bom nas pessoas.",
+    "Sua energia é inesgotável.",
+    "Você é uma pessoa cheia de luz e bondade.",
+    "Você é um exemplo de humildade e graça.",
+    "Sua presença faz o mundo mais bonito.",
+    "Você tem uma visão extraordinária da vida.",
+    "Você é uma pessoa que todos gostariam de ter como amigo.",
+    "Você tem um dom raro de fazer os outros se sentirem especiais.",
+    "Você tem uma alma pura e generosa.",
+    "Sua força de vontade é incomparável.",
+    "Você é uma pessoa que sempre faz a diferença.",
+    "Sua inteligência é uma fonte de inspiração.",
+    "Você é alguém que tem sempre boas ideias.",
+    "Você tem um espírito aventureiro e corajoso.",
+    "Sua amizade é uma das melhores coisas que existem.",
+    "Você é uma pessoa incrível, de dentro para fora.",
+    "Você tem uma mente criativa que encanta todos ao redor.",
+    "Você tem um coração cheio de amor para dar.",
+    "Sua capacidade de fazer os outros se sentirem bem é admirável.",
+    "Você é uma pessoa que todos adoram estar perto.",
+    "Sua autenticidade é inspiradora.",
+    "Você tem um dom para fazer o bem.",
+    "Você tem uma habilidade impressionante de manter a calma.",
+    "Sua bondade é algo de outro mundo.",
+    "Você tem uma energia que inspira todos ao seu redor.",
+    "Sua amizade é uma das maiores bênçãos da minha vida.",
+    "Você tem uma personalidade única e encantadora.",
+    "Você tem uma maneira única de tocar o coração das pessoas.",
+    "Sua presença traz conforto e tranquilidade.",
+    "Você é alguém que deixa o mundo mais bonito apenas por existir.",
+    "Você é uma pessoa que todos admiram por sua bondade.",
+    "Você é uma pessoa com uma incrível capacidade de transformar o mundo ao seu redor.",
+    "Sua bondade e generosidade são incomparáveis.",
+    "Você tem uma habilidade incrível de fazer os outros se sentirem valorizados.",
+    "Você é um exemplo de graça e elegância.",
+    "Sua presença sempre traz felicidade.",
+    "Você tem uma capacidade incrível de se conectar com as pessoas.",
+    "Você é uma pessoa que sempre traz alegria por onde passa.",
+    "Você tem um coração maravilhoso.",
+    "Você é uma fonte de inspiração para todos.",
+    "Sua energia positiva é algo contagiante.",
+    "Você é uma pessoa de grande caráter.",
+    "Você é uma fonte constante de amor e apoio.",
+    "Você tem uma habilidade incrível de entender os sentimentos dos outros.",
+    "Você é uma pessoa com uma alma linda.",
+    "Sua felicidade é algo que todos ao seu redor querem ver.",
+    "Você tem uma forma única de fazer o mundo melhor.",
+    "Você é uma pessoa que sempre está lá quando os outros precisam.",
+    "Você tem um charme natural que encanta a todos.",
+    "Você é uma pessoa que tem sempre palavras sábias e acolhedoras.",
+    "Sua atitude positiva é inspiradora.",
+    "Você tem uma grande capacidade de inspirar os outros.",
+    "Você é uma pessoa que sempre traz boas energias.",
+    "Você tem uma capacidade incrível de lidar com qualquer situação.",
+    "Você é alguém que sempre faz os outros se sentirem amados.",
+    "Você é uma pessoa que ilumina o dia de todos ao seu redor.",
+    "Sua capacidade de ouvir os outros é impressionante.",
+    "Você tem um coração cheio de bondade.",
+    "Você é alguém que sempre ajuda os outros.",
+    "Sua energia positiva transforma qualquer lugar.",
+    "Você é uma pessoa que todos querem ao seu lado.",
+    "Você é alguém que traz alegria onde quer que vá.",
+    "Você é um exemplo de bondade e generosidade.",
+    "Sua dedicação e esforço são inspiradores.",
+    "Você tem um talento natural para fazer os outros sorrirem.",
+    "Sua presença é sempre acolhedora e calorosa.",
+    "Você tem uma maneira única de fazer os outros se sentirem amados.",
+    "Você é alguém que traz felicidade para os outros.",
+    "Sua compaixão é uma das suas maiores qualidades.",
+    "Você tem um dom especial para ajudar os outros.",
+    "Sua sabedoria é um guia para aqueles ao seu redor.",
+    "Você é uma pessoa que transmite tranquilidade.",
+    "Você tem uma capacidade maravilhosa de lidar com os outros.",
+    "Sua presença é sempre uma bênção para todos.",
+    "Você é alguém que sempre leva luz aos outros.",
+    "Sua energia positiva sempre inspira os outros a serem melhores.",
+    "Você é uma pessoa que sempre tem uma palavra amiga para todos.",
+    "Você é uma pessoa de grande coração e alma generosa."
+    ];
+    
 
+        let currentElogioIndex = 0;
+        let intervalId = null;
         const elogioElement = document.getElementById('elogio');
         const button = document.getElementById('toggleButton');
-        const feedbackSection = document.getElementById('feedback');
+        const feedback = document.getElementById('feedback');
         const gif = document.getElementById('gif');
-        const chanceSection = document.getElementById('chance');
+        const chance = document.getElementById('chance');
         const linkSection = document.getElementById('linkSection');
-        const simButton = document.getElementById('sim');
-        const naoButton = document.getElementById('nao');
-        const chanceSimButton = document.getElementById('chanceSim');
-        const chanceNaoButton = document.getElementById('chanceNao');
-        const linkSimButton = document.getElementById('linkSim');
-        const linkNaoButton = document.getElementById('linkNao');
-        let currentElogioIndex = 0;
+
+        function alternarElogios() {
+            currentElogioIndex = (currentElogioIndex + 1) % elogios.length;
+            elogioElement.textContent = elogios[currentElogioIndex];
+        }
+
+        function iniciarAlternancia() {
+            intervalId = setInterval(alternarElogios, 100);
+        }
+
+        function pararAlternancia() {
+            clearInterval(intervalId);
+            intervalId = null;
+            button.style.display = 'none';
+            feedback.style.display = 'flex';
+        }
 
         button.addEventListener('click', () => {
-            if (button.textContent === "Parar") {
-                // Trocar para o tema feliz
-                document.body.classList.add('happy-theme');
-                elogioElement.style.display = "none";
-                feedbackSection.style.display = "none";
-                button.style.display = "none";
-
-                const p = document.createElement('p');
-                p.textContent = elogios[Math.floor(Math.random() * elogios.length)];
-                document.body.appendChild(p);
-                const happyGif = document.createElement('img');
-                happyGif.src = "https://media0.giphy.com/media/L95W4wv8nnb9K/200.gif?cid=6c09b952kg7qovwx4im10f7olwmovkstyc3u4rehjoqia1p3&ep=v1_gifs_search&rid=200.gif&ct=g";
-                document.body.appendChild(happyGif);
-                const retryButton = document.createElement('button');
-                retryButton.className = "retry-button";
-                retryButton.textContent = "Tente novamente";
-                retryButton.addEventListener('click', () => {
-                    location.reload();
-                });
-                document.body.appendChild(retryButton);
+            if (intervalId) {
+                pararAlternancia();
+            } else {
+                button.textContent = "Parar";
+                iniciarAlternancia();
             }
         });
+
+        document.getElementById('sim').addEventListener('click', () => {
+            document.body.classList.add('happy-theme');
+            document.body.innerHTML = '<p>Que bom que gostou!</p><img src="https://media.tenor.com/VIwSvy7clYsAAAAM/feeh.gif" alt="Feliz"><p>Tem mais coisa,  tente responder diferente</p><button class="retry-button" onclick="location.reload()">Tentar novamente</button>';
+        });
+
+        document.getElementById('nao').addEventListener('click', () => {
+            gif.style.display = 'block';
+            feedback.style.display = 'none';
+            setTimeout(() => {
+                chance.style.display = 'flex';
+            }, 2000);
+        });
+
+        // Função para mover o botão "Não" aleatoriamente
+        function moverBotaoNao() {
+            const buttonNao = document.getElementById('chanceNao');
+            const maxX = window.innerWidth - buttonNao.offsetWidth;
+            const maxY = window.innerHeight - buttonNao.offsetHeight;
+
+            // Calcula uma nova posição aleatória
+            const posX = Math.random() * maxX;
+            const posY = Math.random() * maxY;
+
+            // Muda a posição do botão
+            buttonNao.style.position = 'absolute';
+            buttonNao.style.left = `${posX}px`;
+            buttonNao.style.top = `${posY}px`;
+        }
+
+        document.getElementById('chanceSim').addEventListener('click', () => {
+            chance.style.display = 'none';
+            linkSection.style.display = 'flex';
+        });
+
+        document.getElementById('chanceNao').addEventListener('click', () => {
+            moverBotaoNao(); // Move o botão "Não" para uma posição aleatória
+        });
+
+        document.getElementById('linkSim').addEventListener('click', () => {
+            document.body.classList.add('happy-theme');
+            document.body.innerHTML = '<p>Que bom que gostou!</p><img src="https://media.tenor.com/VIwSvy7clYsAAAAM/feeh.gif" alt="Feliz"><p>Tem mais coisa, vamos tente responder diferente</p><button class="retry-button" onclick="location.reload()">Tentar novamente</button>';
+        });
+
+        document.getElementById('linkNao').addEventListener('click', () => {
+            alert("Repita esse processo mil vezes e se não for suficiente farei um milhão de elogios");
+            location.reload();
+        });
+
+        // Inicia a alternância ao carregar a página
+        iniciarAlternancia();
     </script>
 </body>
 </html>
